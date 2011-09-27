@@ -1,0 +1,1 @@
+A simple way to "badge" any given Android view at runtime without having to cater for it in layout.

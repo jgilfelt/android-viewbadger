@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+>
+
+<!-- 	<FrameLayout -->
+<!-- 		android:layout_width="fill_parent" -->
+<!-- 		android:id="@+id/frameLayout1" -->
+<!-- 		android:layout_height="100dp"> -->
+
+
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="100dp"
+		
+		android:text="@string/hello"
+		android:id="@+id/textView1" />
+	
+<!-- 		<TextView -->
+<!-- 			android:layout_width="wrap_content" -->
+<!-- 			android:layout_height="wrap_content" -->
+<!-- 			android:text="zz" -->
+<!-- 			android:layout_gravity="bottom|right" /> -->
+	
+<!-- 	</FrameLayout> -->
+		
+		
+		<ImageView
+			android:layout_width="wrap_content"
+			android:src="@drawable/icon"
+			android:layout_height="wrap_content"
+			android:id="@+id/imageView1" android:layout_gravity="right"/>
+			
+
+		
+		
+		
+	
+	<Button
+		android:text="Apply badge"
+		android:id="@+id/apply"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:onClick="onApplyClick"
+	></Button>
+
+</LinearLayout>

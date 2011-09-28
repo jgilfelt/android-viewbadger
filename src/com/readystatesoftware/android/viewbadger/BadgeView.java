@@ -7,12 +7,17 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewParent;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -30,15 +35,45 @@ public class BadgeView extends TextView {
 	private static final int DEFAULT_BADGE_COLOR = Color.RED;
 	private static final int DEFAULT_TEXT_COLOR = Color.WHITE;
 	
+	private static Animation fadeIn;
+	private static Animation fadeOut;
+	
 	private Context context;
+	private View target;
+	
 	private int badgePosition;
 	private int badgeMargin;
 	private int badgeColor;
 	
+	private boolean isShown;
+	
+	private ShapeDrawable badgeBg;
+	
 	public BadgeView(Context context) {
-		super(context);
+		this(context, null, android.R.attr.textViewStyle);
+	}
+	
+	public BadgeView(Context context, AttributeSet attrs) {
+		 this(context, attrs, android.R.attr.textViewStyle);
+	}
+	
+	public BadgeView(Context context, View target) {
+		 this(context, null, android.R.attr.textViewStyle, target);
+	}
+	
+	public BadgeView(Context context, AttributeSet attrs, int defStyle) {
+		this(context, attrs, defStyle, null);
+	}
+	
+	public BadgeView(Context context, AttributeSet attrs, int defStyle, View target) {
+		super(context, attrs, defStyle);
+		init(context, target);
+	}
+
+	private void init(Context context, View target) {
 		
 		this.context = context;
+		this.target = target;
 		
 		// apply defaults
 		badgePosition = DEFAULT_POSITION;
@@ -50,9 +85,22 @@ public class BadgeView extends TextView {
 		setPadding(paddingPixels, 0, paddingPixels, 0);
 		setTextColor(DEFAULT_TEXT_COLOR);
 		
+		fadeIn = new AlphaAnimation(0, 1);
+		fadeIn.setInterpolator(new DecelerateInterpolator());
+		fadeIn.setDuration(200);
+
+		fadeOut = new AlphaAnimation(1, 0);
+		fadeOut.setInterpolator(new AccelerateInterpolator());
+		//fadeOut.setStartOffset(1000);
+		fadeOut.setDuration(200);
+		
+		isShown = false;
+		
+		applyTo(this.target);
+		
 	}
-	
-	public void applyTo(View target) {
+
+	private void applyTo(View target) {
 		
 		LayoutParams lp = target.getLayoutParams();
 		
@@ -66,15 +114,63 @@ public class BadgeView extends TextView {
 		group.addView(container, index, lp);
 		
 		container.addView(target);
-		if (getBackground() == null) {
-			setBackgroundDrawable(getDefaultBackground());
-		}
+		//if (getBackground() == null) {
+		//	setBackgroundDrawable(getDefaultBackground());
+		//}
+		this.setVisibility(View.GONE);
 		container.addView(this);
-		applyLayoutParams();
+		//applyLayoutParams();
 		
 		group.invalidate();
 		
+	}
+	
+	public void show() {
+		show(false, null);
+	}
+	
+	public void show(boolean animate) {
+		show(animate, fadeIn);
+	}
+	
+	public void show(Animation anim) {
+		show(true, anim);
+	}
+	
+	public void hide() {
+		hide(false, null);
+	}
+	
+	public void hide(boolean animate) {
+		hide(animate, fadeOut);
+	}
+	
+	public void hide(Animation anim) {
+		hide(true, anim);
+	}
+	
+	private void show(boolean animate, Animation anim) {
+		if (getBackground() == null) {
+			if (badgeBg == null) {
+				badgeBg = getDefaultBackground();
+			}
+			setBackgroundDrawable(badgeBg);
+		}
+		applyLayoutParams();
 		
+		if (animate) {
+			this.startAnimation(anim);
+		}
+		this.setVisibility(View.VISIBLE);
+		isShown = true;
+	}
+	
+	private void hide(boolean animate, Animation anim) {
+		this.setVisibility(View.GONE);
+		if (animate) {
+			this.startAnimation(anim);
+		}
+		isShown = false;
 	}
 	
 	private ShapeDrawable getDefaultBackground() {
@@ -127,6 +223,14 @@ public class BadgeView extends TextView {
 		return (int) px;
 	}
 
+	public View getTarget() {
+		return target;
+	}
+
+	public boolean isShown() {
+		return isShown;
+	}
+
 	public int getBadgePosition() {
 		return badgePosition;
 	}
@@ -147,8 +251,9 @@ public class BadgeView extends TextView {
 		return badgeColor;
 	}
 
-	public void setBadgeColor(int badgeColor) {
+	public void setBadgeBackground(int badgeColor) {
 		this.badgeColor = badgeColor;
+		badgeBg = getDefaultBackground();
 	}
 
 

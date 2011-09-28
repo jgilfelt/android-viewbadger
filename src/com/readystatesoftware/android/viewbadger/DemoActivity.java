@@ -14,6 +14,8 @@ public class DemoActivity extends Activity {
 	TextView text;
 	Button button;
 	
+	BadgeView badge;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,28 +23,34 @@ public class DemoActivity extends Activity {
         icon = (ImageView) findViewById(R.id.imageView1);
         text = (TextView) findViewById(R.id.textView1);
         button = (Button) findViewById(R.id.apply);
+        
+        badge = new BadgeView(this, icon);
+        badge.setText("1");
+    	badge.setBadgeMargin(10);
     }
     
     public void onApplyClick(View v) {
-    	BadgeView badge = new BadgeView(this);
-    	badge.setText("1");
-    	badge.setBadgeMargin(10);
-    	badge.applyTo(icon);
     	
-    	BadgeView badge2 = new BadgeView(this);
+    	if (badge.isShown()) { 
+    		badge.hide(true);
+    	} else {
+    		badge.show(true);
+    	}
+    	
+    	BadgeView badge2 = new BadgeView(this, text);
     	badge2.setTextColor(Color.BLUE);
-    	badge2.setBadgeColor(Color.YELLOW);
+    	badge2.setBadgeBackground(Color.YELLOW);
     	badge2.setText("New!");
     	badge2.setBadgePosition(BadgeView.POSITION_TOP_RIGHT);
-    	badge2.applyTo(text);
+    	badge2.show(true);
     	
-    	BadgeView badge3 = new BadgeView(this);
+    	BadgeView badge3 = new BadgeView(this, button);
     	badge3.setText("99");
     	badge3.setTextColor(Color.DKGRAY);
     	badge3.setTextSize(10);
     	badge3.setBackgroundColor(Color.WHITE);
     	badge3.setBadgePosition(BadgeView.POSITION_TOP_LEFT);
-    	badge3.applyTo(button);
+    	badge3.show(true);
     }
     
 }

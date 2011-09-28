@@ -1,4 +1,4 @@
-package com.readystatesoftware.android.viewbadger;
+package viewbadger.demo;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.readystatesoftware.viewbadger.BadgeView;
+import com.readystatesoftware.viewbadger.R;
 
 public class DemoActivity extends Activity {
     
@@ -30,9 +33,13 @@ public class DemoActivity extends Activity {
         text = (TextView) findViewById(R.id.textView1);
         button = (Button) findViewById(R.id.apply);
         
+        // setup badges
+        
         badge = new BadgeView(this, icon);
-        badge.setText("1");
+        badge.setText("8");
     	badge.setBadgeMargin(10);
+    	badge.setTextSize(12);
+    	badge.setBackgroundResource(R.drawable.badge_ifaux);
     	
     	badge2 = new BadgeView(this, text);
     	badge2.setTextColor(Color.BLUE);
@@ -48,24 +55,23 @@ public class DemoActivity extends Activity {
     	
     	badge3 = new BadgeView(this, button);
     	badge3.setText("99");
-    	badge3.setTextColor(Color.DKGRAY);
-    	badge3.setTextSize(10);
-    	badge3.setBackgroundColor(Color.WHITE);
+    	//badge3.setTextColor(Color.DKGRAY);
+    	//badge3.setTextSize(10);
+    	//badge3.setBackgroundColor(Color.WHITE);
     	badge3.setBadgePosition(BadgeView.POSITION_TOP_LEFT);
+    	
     }
     
     public void onApplyClick(View v) {
-    	
-    	badge3.toggle();
-    	badge2.toggle(true);
-    	
-    	
     	
     	TranslateAnimation anim = new TranslateAnimation(-100, 0, 0, 0);
         anim.setInterpolator(new BounceInterpolator());
         anim.setDuration(1000);
     	
     	badge.toggle(anim, null);
+    	badge2.toggle(true);
+    	badge3.toggle();
+    	
     }
     
 }

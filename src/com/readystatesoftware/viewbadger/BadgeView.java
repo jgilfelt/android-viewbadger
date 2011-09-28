@@ -1,9 +1,8 @@
-package com.readystatesoftware.android.viewbadger;
+package com.readystatesoftware.viewbadger;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;

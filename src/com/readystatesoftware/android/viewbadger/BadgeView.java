@@ -149,6 +149,18 @@ public class BadgeView extends TextView {
 		hide(true, anim);
 	}
 	
+	public void toggle() {
+		toggle(false, null, null);
+	}
+	
+	public void toggle(boolean animate) {
+		toggle(animate, fadeIn, fadeOut);
+	}
+	
+	public void toggle(Animation animIn, Animation animOut) {
+		toggle(true, animIn, animOut);
+	}
+	
 	private void show(boolean animate, Animation anim) {
 		if (getBackground() == null) {
 			if (badgeBg == null) {
@@ -171,6 +183,14 @@ public class BadgeView extends TextView {
 			this.startAnimation(anim);
 		}
 		isShown = false;
+	}
+	
+	private void toggle(boolean animate, Animation animIn, Animation animOut) {
+		if (isShown) {
+			hide(animate && (animOut != null), animOut);	
+		} else {
+			show(animate && (animIn != null), animIn);
+		}
 	}
 	
 	private ShapeDrawable getDefaultBackground() {

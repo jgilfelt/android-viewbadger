@@ -90,12 +90,15 @@ public class BadgeView extends TextView {
 
 		fadeOut = new AlphaAnimation(1, 0);
 		fadeOut.setInterpolator(new AccelerateInterpolator());
-		//fadeOut.setStartOffset(1000);
 		fadeOut.setDuration(200);
 		
 		isShown = false;
 		
-		applyTo(this.target);
+		if (this.target != null) {
+			applyTo(this.target);
+		} else {
+			show();
+		}
 		
 	}
 
@@ -196,8 +199,6 @@ public class BadgeView extends TextView {
 		
 		int r = dipToPixels(DEFAULT_CORNER_RADIUS_DIP);
 		float[] outerR = new float[] {r, r, r, r, r, r, r, r};
-        //RectF   inset = new RectF(6, 6, 6, 6);
-        //float[] innerR = new float[] { 12, 12, 0, 0, 12, 12, 0, 0 };
         
         RoundRectShape rr = new RoundRectShape(outerR, null, null);
 		ShapeDrawable drawable = new ShapeDrawable(rr);
@@ -274,6 +275,5 @@ public class BadgeView extends TextView {
 		this.badgeColor = badgeColor;
 		badgeBg = getDefaultBackground();
 	}
-
 
 }

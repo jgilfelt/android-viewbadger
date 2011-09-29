@@ -5,10 +5,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.Toast;
 
 import com.readystatesoftware.viewbadger.BadgeView;
@@ -22,6 +24,7 @@ public class DemoActivity extends TabActivity {
 	Button btnAnim2;
 	Button btnCustom;
 	Button btnClick;
+	Button btnTab;
 	
 	BadgeView badge1;
 	BadgeView badge2;
@@ -97,6 +100,9 @@ public class DemoActivity extends TabActivity {
     	btnAnim2 = (Button) findViewById(R.id.anim2_target);
         badge4 = new BadgeView(this, btnAnim2);
     	badge4.setText("123");
+    	badge4.setBadgePosition(BadgeView.POSITION_TOP_LEFT);
+    	badge4.setBadgeMargin(15);
+    	badge4.setBadgeBackground(Color.parseColor("#A4C639"));
     	btnAnim2.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -140,6 +146,63 @@ public class DemoActivity extends TabActivity {
 			}
 		});
     	
+    	// *** tab ***
+		// TODO needs work 
+    	
+        btnTab = (Button) findViewById(R.id.tab_btn);
+        TabWidget tabs = (TabWidget) findViewById(android.R.id.tabs);
+        ViewGroup tab = (ViewGroup) tabs.getChildTabViewAt(1);
+        View v = tab.getChildAt(0); 
+        badge7 = new BadgeView(this, v);
+        badge7.setText("5");
+    	badge7.setBadgeMargin(0);
+        btnTab.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				badge7.toggle();
+			}
+		});
+    	
     }
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		BadgeView badge;
+		View target;
+		
+		// *** test linear layout container ***
+		
+		target = findViewById(R.id.linear_target);
+		badge = new BadgeView(this, target);
+		badge.setText("OK");
+		badge.show();
+		
+		// *** test relative layout container ***
+		
+		target = findViewById(R.id.relative_target);
+		badge = new BadgeView(this, target);
+		badge.setText("OK");
+		badge.show();
+		
+		// *** test frame layout container ***
+		
+		target = findViewById(R.id.frame_target);
+		badge = new BadgeView(this, target);
+		badge.setText("OK");
+		badge.show();
+		
+		// *** test table layout container ***
+		
+		target = findViewById(R.id.table_target);
+		badge = new BadgeView(this, target);
+		badge.setText("OK");
+		badge.show();
+		
+		
+	}
+    
+    
     
 }

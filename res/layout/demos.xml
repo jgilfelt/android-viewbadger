@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+>
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="5dp">
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:src="@drawable/icon"
+				android:layout_height="wrap_content"
+				android:id="@+id/default_target"
+				android:layout_gravity="center" />
+
+			<TextView
+				android:id="@+id/default_label"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Default"
+				android:layout_gravity="center" />
+
+		</LinearLayout>
+
+		<Button
+			android:text="Position"
+			android:id="@+id/position_target"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"/>
+		
+		<Button
+			android:text="Colour"
+			android:id="@+id/colour_target"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"/>
+			
+		<Button
+			android:text="Animate (default)"
+			android:id="@+id/anim1_target"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"/>
+			
+		<Button
+			android:text="Animate (custom)"
+			android:id="@+id/anim2_target"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"/>
+			
+		<Button
+			android:text="Custom background"
+			android:id="@+id/custom_target"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"/>
+			
+		<Button
+			android:text="Tab"
+			android:id="@+id/tab_btn"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"/>
+			
+		<Button
+			android:text="Click"
+			android:id="@+id/click_target"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"/>
+
+
+	</LinearLayout>
+
+</ScrollView>

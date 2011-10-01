@@ -3,14 +3,17 @@ Android ViewBadger
 
 A simple way to "badge" any given Android view at runtime without having to cater for it in layout.
 
-![Demos](http://jeffgilfelt.com/viewbadger/badge1.png "Demos")
-![ListAdapter](http://jeffgilfelt.com/viewbadger/badge2.png "ListAdapter")
+![Demos](http://jeffgilfelt.com/viewbadger/badge1.png "Demos")&nbsp;
+![ListAdapter](http://jeffgilfelt.com/viewbadger/badge2.png "ListAdapter")&nbsp;
 ![Layout Tests](http://jeffgilfelt.com/viewbadger/badge3.png "Layout Tests")
 
 Usage
 -----
 
-TODO
+    View target = findViewById(R.id.target_view);
+    BadgeView badge = new BadgeView(this, target);
+    badge.setText("1");
+    badge.show();
 
 Implementation
 --------------

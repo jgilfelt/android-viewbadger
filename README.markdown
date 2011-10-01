@@ -26,8 +26,6 @@ Implementation
 
 To use ViewBadger in your own Android project, simply copy `android-viewbadger.jar` (available from this repository's package downloads) into your project's `/libs` directory and add it to the build path.
 
-<br />
-
 Credits
 -------
 

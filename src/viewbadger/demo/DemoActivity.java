@@ -244,7 +244,7 @@ public class DemoActivity extends TabActivity {
     private static class BadgeAdapter extends BaseAdapter {
         private LayoutInflater mInflater;
         private Context mContext;
-        private static int droidGreen = Color.parseColor("#A4C639");
+        private static final int droidGreen = Color.parseColor("#A4C639");
         
         public BadgeAdapter(Context context) {
             mInflater = LayoutInflater.from(context);

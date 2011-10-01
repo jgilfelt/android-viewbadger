@@ -1,16 +1,21 @@
 package viewbadger.demo;
 
 import android.app.TabActivity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TabWidget;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.readystatesoftware.viewbadger.BadgeView;
@@ -18,6 +23,8 @@ import com.readystatesoftware.viewbadger.R;
 
 public class DemoActivity extends TabActivity {
     
+	private static final String[] DATA = Cheeses.sCheeseStrings;
+	
 	Button btnPosition;
 	Button btnColour;
 	Button btnAnim1;
@@ -25,6 +32,9 @@ public class DemoActivity extends TabActivity {
 	Button btnCustom;
 	Button btnClick;
 	Button btnTab;
+	Button btnIncrement;
+	
+	ListView listDemo;
 	
 	BadgeView badge1;
 	BadgeView badge2;
@@ -33,6 +43,7 @@ public class DemoActivity extends TabActivity {
 	BadgeView badge5;
 	BadgeView badge6;
 	BadgeView badge7;
+	BadgeView badge8;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,9 +56,13 @@ public class DemoActivity extends TabActivity {
                 .setIndicator("Badge Demos")
                 .setContent(R.id.tab1));
 
+        tabHost.addTab(tabHost.newTabSpec("adapter")
+                .setIndicator("List Adapter")
+                .setContent(R.id.tab2));
+        
         tabHost.addTab(tabHost.newTabSpec("tests")
                 .setIndicator("Layout Tests")
-                .setContent(R.id.tab2));
+                .setContent(R.id.tab3));
        
         // *** default badge ***
         
@@ -69,13 +84,14 @@ public class DemoActivity extends TabActivity {
 			}
 		});
         
-        // *** badge/text colour ***
+        // *** badge/text size & colour ***
         
     	btnColour = (Button) findViewById(R.id.colour_target);
     	badge2 = new BadgeView(this, btnColour);
     	badge2.setText("New!");
     	badge2.setTextColor(Color.BLUE);
     	badge2.setBadgeBackground(Color.YELLOW);
+    	badge2.setTextSize(12);
     	btnColour.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -117,14 +133,13 @@ public class DemoActivity extends TabActivity {
     	
         btnCustom = (Button) findViewById(R.id.custom_target);
         badge5 = new BadgeView(this, btnCustom);
-        badge5.setText("8");
+        badge5.setText("37");
         badge5.setBackgroundResource(R.drawable.badge_ifaux);
-    	badge5.setBadgeMargin(10);
-    	badge5.setTextSize(12);
+    	badge5.setTextSize(16);
     	btnCustom.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				badge5.toggle();
+				badge5.toggle(true);
 			}
 		});
     	
@@ -133,6 +148,8 @@ public class DemoActivity extends TabActivity {
     	btnClick = (Button) findViewById(R.id.click_target);
     	badge6 = new BadgeView(this, btnClick);
     	badge6.setText("click me");
+    	badge6.setBadgeBackground(Color.BLUE);
+    	badge6.setTextSize(16);
     	badge6.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -151,7 +168,7 @@ public class DemoActivity extends TabActivity {
     	
         btnTab = (Button) findViewById(R.id.tab_btn);
         TabWidget tabs = (TabWidget) findViewById(android.R.id.tabs);
-        ViewGroup tab = (ViewGroup) tabs.getChildTabViewAt(1);
+        ViewGroup tab = (ViewGroup) tabs.getChildTabViewAt(2);
         View v = tab.getChildAt(0); 
         badge7 = new BadgeView(this, v);
         badge7.setText("5");
@@ -162,6 +179,27 @@ public class DemoActivity extends TabActivity {
 				badge7.toggle();
 			}
 		});
+        
+        // *** increment ***
+        
+        btnIncrement = (Button) findViewById(R.id.increment_target);
+        badge8 = new BadgeView(this, btnIncrement);
+        badge8.setText("0");
+        btnIncrement.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (badge8.isShown()) {
+					badge8.increment(1);
+				} else {
+					badge8.show();
+				}
+			}
+		});
+        
+        // *** list adapter ****
+        
+        listDemo = (ListView) findViewById(R.id.tab2);
+        listDemo.setAdapter(new BadgeAdapter(this));
     	
     }
 
@@ -203,6 +241,56 @@ public class DemoActivity extends TabActivity {
 		
 	}
     
-    
+    private static class BadgeAdapter extends BaseAdapter {
+        private LayoutInflater mInflater;
+        private Context mContext;
+        
+        public BadgeAdapter(Context context) {
+            mInflater = LayoutInflater.from(context);
+            mContext = context;
+        }
+
+        public int getCount() {
+            return DATA.length;
+        }
+
+        public Object getItem(int position) {
+            return position;
+        }
+        
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+
+            if (convertView == null) {
+                convertView = mInflater.inflate(android.R.layout.simple_list_item_2, null);
+                holder = new ViewHolder();
+                holder.text = (TextView) convertView.findViewById(android.R.id.text1);
+                holder.badge = new BadgeView(mContext, holder.text);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            holder.text.setText(DATA[position]);
+            
+            if (position % 3 == 0) {
+            	holder.badge.setText(String.valueOf(position));
+            	holder.badge.show();
+            } else {
+            	holder.badge.hide();
+            }
+            
+            return convertView;
+        }
+
+        static class ViewHolder {
+            TextView text;
+            BadgeView badge;
+        }
+    }
     
 }

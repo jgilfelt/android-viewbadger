@@ -2,8 +2,7 @@
 <ScrollView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
->
+	android:layout_height="fill_parent">
 
 	<LinearLayout
 		android:orientation="vertical"
@@ -13,8 +12,7 @@
 		<LinearLayout
 			android:orientation="vertical"
 			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:padding="5dp">
+			android:layout_height="wrap_content">
 
 			<ImageView
 				android:layout_width="wrap_content"
@@ -39,7 +37,7 @@
 			android:layout_height="wrap_content"/>
 		
 		<Button
-			android:text="Colour"
+			android:text="Size/Colour"
 			android:id="@+id/colour_target"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
@@ -57,7 +55,7 @@
 			android:layout_height="wrap_content"/>
 			
 		<Button
-			android:text="Custom background"
+			android:text="Custom background drawable"
 			android:id="@+id/custom_target"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
@@ -69,8 +67,14 @@
 			android:layout_height="wrap_content"/>
 			
 		<Button
-			android:text="Click"
+			android:text="Clickable"
 			android:id="@+id/click_target"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"/>
+			
+		<Button
+			android:text="Increment"
+			android:id="@+id/increment_target"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"/>
 

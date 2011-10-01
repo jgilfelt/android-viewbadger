@@ -195,6 +195,27 @@ public class BadgeView extends TextView {
 		}
 	}
 	
+	public int increment(int offset) {
+		CharSequence txt = getText();
+		int i;
+		if (txt != null) {
+			try {
+				i = Integer.parseInt(txt.toString());
+			} catch (NumberFormatException e) {
+				i = 0;
+			}
+		} else {
+			i = 0;
+		}
+		i = i + offset;
+		setText(String.valueOf(i));
+		return i;
+	}
+	
+	public int decrement(int offset) {
+		return increment(-offset);
+	}
+	
 	private ShapeDrawable getDefaultBackground() {
 		
 		int r = dipToPixels(DEFAULT_CORNER_RADIUS_DIP);

@@ -20,6 +20,12 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+/**
+ * A simple text label view that can be applied as a "badge" to any given {@link android.view.View}. 
+ * This class is intended to be instantiated at runtime rather than included in XML layouts.
+ * 
+ * @author Jeff Gilfelt
+ */
 public class BadgeView extends TextView {
 
 	public static final int POSITION_TOP_LEFT = 1;
@@ -56,6 +62,14 @@ public class BadgeView extends TextView {
 		 this(context, attrs, android.R.attr.textViewStyle);
 	}
 	
+	/**
+     * Constructor -
+     * 
+     * create a new BadgeView instance attached to a target {@link android.view.View}.
+     *
+     * @param context context for this view.
+     * @param target the View to attach the badge to.
+     */
 	public BadgeView(Context context, View target) {
 		 this(context, null, android.R.attr.textViewStyle, target);
 	}
@@ -127,38 +141,81 @@ public class BadgeView extends TextView {
 		
 	}
 	
+	/**
+     * Make the badge visible in the UI.
+     * 
+     */
 	public void show() {
 		show(false, null);
 	}
 	
+	/**
+     * Make the badge visible in the UI.
+     *
+     * @param animate flag to apply the default fade-in animation.
+     */
 	public void show(boolean animate) {
 		show(animate, fadeIn);
 	}
 	
+	/**
+     * Make the badge visible in the UI.
+     *
+     * @param anim Animation to apply to the view when made visible.
+     */
 	public void show(Animation anim) {
 		show(true, anim);
 	}
 	
+	/**
+     * Make the badge non-visible in the UI.
+     * 
+     */
 	public void hide() {
 		hide(false, null);
 	}
 	
+	/**
+     * Make the badge non-visible in the UI.
+     *
+     * @param animate flag to apply the default fade-out animation.
+     */
 	public void hide(boolean animate) {
 		hide(animate, fadeOut);
 	}
 	
+	/**
+     * Make the badge non-visible in the UI.
+     *
+     * @param anim Animation to apply to the view when made non-visible.
+     */
 	public void hide(Animation anim) {
 		hide(true, anim);
 	}
 	
+	/**
+     * Toggle the badge visibility in the UI.
+     * 
+     */
 	public void toggle() {
 		toggle(false, null, null);
 	}
 	
+	/**
+     * Toggle the badge visibility in the UI.
+     * 
+     * @param animate flag to apply the default fade-in/out animation.
+     */
 	public void toggle(boolean animate) {
 		toggle(animate, fadeIn, fadeOut);
 	}
 	
+	/**
+     * Toggle the badge visibility in the UI.
+     *
+     * @param animIn Animation to apply to the view when made visible.
+     * @param animOut Animation to apply to the view when made non-visible.
+     */
 	public void toggle(Animation animIn, Animation animOut) {
 		toggle(true, animIn, animOut);
 	}
@@ -195,6 +252,12 @@ public class BadgeView extends TextView {
 		}
 	}
 	
+	/**
+     * Increment the numeric badge label. If the current badge label cannot be converted to
+     * an integer value, its label will be set to "0".
+     * 
+     * @param offset the increment offset.
+     */
 	public int increment(int offset) {
 		CharSequence txt = getText();
 		int i;
@@ -212,6 +275,12 @@ public class BadgeView extends TextView {
 		return i;
 	}
 	
+	/**
+     * Decrement the numeric badge label. If the current badge label cannot be converted to
+     * an integer value, its label will be set to "0".
+     * 
+     * @param offset the decrement offset.
+     */
 	public int decrement(int offset) {
 		return increment(-offset);
 	}
@@ -221,7 +290,7 @@ public class BadgeView extends TextView {
 		int r = dipToPixels(DEFAULT_CORNER_RADIUS_DIP);
 		float[] outerR = new float[] {r, r, r, r, r, r, r, r};
         
-        RoundRectShape rr = new RoundRectShape(outerR, null, null);
+		RoundRectShape rr = new RoundRectShape(outerR, null, null);
 		ShapeDrawable drawable = new ShapeDrawable(rr);
 		drawable.getPaint().setColor(badgeColor);
 		
@@ -258,43 +327,82 @@ public class BadgeView extends TextView {
 		
 	}
 
-	private int dipToPixels(int dip) {
-		Resources r = getResources();
-		float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
-		return (int) px;
-	}
-
+	/**
+     * Returns the target View this badge has been attached to.
+     * 
+     */
 	public View getTarget() {
 		return target;
 	}
 
+	/**
+     * Is this badge currently visible in the UI?
+     * 
+     */
+	@Override
 	public boolean isShown() {
 		return isShown;
 	}
 
+	/**
+     * Returns the positioning of this badge.
+     * 
+     * one of POSITION_TOP_LEFT, POSITION_TOP_RIGHT, POSITION_BOTTOM_LEFT, POSITION_BOTTOM_RIGHT.
+     * 
+     */
 	public int getBadgePosition() {
 		return badgePosition;
 	}
 
+	/**
+     * Set the positioning of this badge.
+     * 
+     * @param layoutPosition one of POSITION_TOP_LEFT, POSITION_TOP_RIGHT, POSITION_BOTTOM_LEFT, POSITION_BOTTOM_RIGHT.
+     * 
+     */
 	public void setBadgePosition(int layoutPosition) {
 		this.badgePosition = layoutPosition;
 	}
 
+	/**
+     * Returns the horizontal/vertical margin from the target View that is applied to this badge.
+     * 
+     */
 	public int getBadgeMargin() {
 		return badgeMargin;
 	}
 
+	/**
+     * Set the horizontal/vertical margin from the target View that is applied to this badge.
+     * 
+     * @param badgeMargin the margin in pixels.
+     */
 	public void setBadgeMargin(int badgeMargin) {
 		this.badgeMargin = badgeMargin;
 	}
 	
-	public int getBadgeColor() {
+	/**
+     * Returns the color value of the badge background.
+     * 
+     */
+	public int getBadgeBackgroundColor() {
 		return badgeColor;
 	}
 
-	public void setBadgeBackground(int badgeColor) {
+	/**
+     * Set the color value of the badge background.
+     * 
+     * @param badgeColor the badge background color.
+     */
+	public void setBadgeBackgroundColor(int badgeColor) {
 		this.badgeColor = badgeColor;
 		badgeBg = getDefaultBackground();
+	}
+	
+	private int dipToPixels(int dip) {
+		Resources r = getResources();
+		float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, r.getDisplayMetrics());
+		return (int) px;
 	}
 
 }

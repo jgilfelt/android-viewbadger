@@ -90,7 +90,7 @@ public class DemoActivity extends TabActivity {
     	badge2 = new BadgeView(this, btnColour);
     	badge2.setText("New!");
     	badge2.setTextColor(Color.BLUE);
-    	badge2.setBadgeBackground(Color.YELLOW);
+    	badge2.setBadgeBackgroundColor(Color.YELLOW);
     	badge2.setTextSize(12);
     	btnColour.setOnClickListener(new OnClickListener() {
 			@Override
@@ -118,7 +118,7 @@ public class DemoActivity extends TabActivity {
     	badge4.setText("123");
     	badge4.setBadgePosition(BadgeView.POSITION_TOP_LEFT);
     	badge4.setBadgeMargin(15);
-    	badge4.setBadgeBackground(Color.parseColor("#A4C639"));
+    	badge4.setBadgeBackgroundColor(Color.parseColor("#A4C639"));
     	btnAnim2.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -148,7 +148,7 @@ public class DemoActivity extends TabActivity {
     	btnClick = (Button) findViewById(R.id.click_target);
     	badge6 = new BadgeView(this, btnClick);
     	badge6.setText("click me");
-    	badge6.setBadgeBackground(Color.BLUE);
+    	badge6.setBadgeBackgroundColor(Color.BLUE);
     	badge6.setTextSize(16);
     	badge6.setOnClickListener(new OnClickListener() {
 			@Override
@@ -164,7 +164,7 @@ public class DemoActivity extends TabActivity {
 		});
     	
     	// *** tab ***
-		// TODO needs work 
+		// TODO this needs work 
     	
         btnTab = (Button) findViewById(R.id.tab_btn);
         TabWidget tabs = (TabWidget) findViewById(android.R.id.tabs);
@@ -244,6 +244,7 @@ public class DemoActivity extends TabActivity {
     private static class BadgeAdapter extends BaseAdapter {
         private LayoutInflater mInflater;
         private Context mContext;
+        private static int droidGreen = Color.parseColor("#A4C639");
         
         public BadgeAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
@@ -270,6 +271,8 @@ public class DemoActivity extends TabActivity {
                 holder = new ViewHolder();
                 holder.text = (TextView) convertView.findViewById(android.R.id.text1);
                 holder.badge = new BadgeView(mContext, holder.text);
+                holder.badge.setBadgeBackgroundColor(droidGreen);
+                holder.badge.setTextColor(Color.BLACK);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -283,6 +286,7 @@ public class DemoActivity extends TabActivity {
             } else {
             	holder.badge.hide();
             }
+            
             
             return convertView;
         }

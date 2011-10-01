@@ -7,7 +7,7 @@ A simple way to "badge" any given Android view at runtime without having to cate
 ![ListAdapter](http://jeffgilfelt.com/viewbadger/badge2.png "ListAdapter")&nbsp;
 ![Layout Tests](http://jeffgilfelt.com/viewbadger/badge3.png "Layout Tests")
 
-Note: If your aim is to replicate the iOS icon and TabBar badge UI for notifications, consider using Android UI conventions such as the number field of the '[Notification]'(http://developer.android.com/reference/android/app/Notification.html "Notification") class rather than this method.
+Note: If your aim is to replicate the iOS icon and TabBar badge UI for notifications, consider using Android UI conventions such as the number field of the [Notification](http://developer.android.com/reference/android/app/Notification.html "Notification") class rather than this method.
 
 Usage
 -----
@@ -24,9 +24,11 @@ This project contains a fully working example application. Refer to the `DemoAct
 Implementation
 --------------
 
-To use ViewBadger in your own Android project, simply copy `android-viewbadger.jar` (available from this repository's downloads) into your project's `libs` directory and add it to the build path.
+To use ViewBadger in your own Android project, simply copy `android-viewbadger.jar` (available from this repository's package downloads) into your project's `/libs` directory and add it to the build path.
 
 <br />
+
+Author: Jeff Gilfelt
 
 The code in this project is licensed under the Apache Software License 2.0.
 <br />

@@ -28,6 +28,9 @@ To use ViewBadger in your own Android project, simply copy `android-viewbadger.j
 
 <br />
 
+Credits
+-------
+
 Author: Jeff Gilfelt
 
 The code in this project is licensed under the Apache Software License 2.0.

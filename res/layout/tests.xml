@@ -4,130 +4,201 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-
 	<LinearLayout
-		android:orientation="horizontal"
+		android:orientation="vertical"
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:padding="5dp">
+		android:layout_height="fill_parent">
 
-		<com.readystatesoftware.viewbadger.BadgeView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="OK"
-			android:id="@+id/badge"
-			android:layout_gravity="center" />
-
-		<TextView
+		<LinearLayout
+			android:orientation="horizontal"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:text="Defined in XML layout"
-			android:layout_gravity="center"
-			android:padding="5dp" />
+			android:padding="5dp">
 
-	</LinearLayout>
+			<com.readystatesoftware.viewbadger.BadgeView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="OK"
+				android:id="@+id/badge"
+				android:layout_gravity="center" />
 
-	<LinearLayout
-		android:orientation="horizontal"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:padding="5dp">
+			<TextView
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="Defined in XML layout"
+				android:layout_gravity="center"
+				android:padding="5dp" />
 
-		<TextView
-			android:layout_width="0dp"
+		</LinearLayout>
+
+		<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="LinearLayout"
-			android:layout_gravity="center"
-			android:padding="5dp" />
+			android:padding="5dp">
 
-		<ImageView
-			android:layout_width="wrap_content"
-			android:src="@drawable/icon"
-			android:layout_height="wrap_content"
-			android:id="@+id/linear_target"
-			android:layout_gravity="center" />
-
-	</LinearLayout>
-
-	<RelativeLayout
-		android:orientation="horizontal"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:padding="5dp">
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentLeft="true"
-			android:text="RelativeLayout"
-			android:layout_gravity="center"
-			android:id="@+id/relative_label"
-			android:padding="5dp" />
-
-		<ImageView
-			android:layout_width="wrap_content"
-			android:src="@drawable/icon"
-			android:layout_height="wrap_content"
-			android:layout_toRightOf="@id/relative_label"
-			android:id="@+id/relative_target"
-			android:layout_gravity="center" />
-
-	</RelativeLayout>
-
-	<FrameLayout
-		android:orientation="horizontal"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:padding="5dp">
-
-		<ImageView
-			android:layout_width="wrap_content"
-			android:src="@drawable/icon"
-			android:layout_height="wrap_content"
-			android:id="@+id/frame_target"
-			android:layout_gravity="center" />
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="FrameLayout"
-			android:layout_gravity="center"
-			android:padding="5dp" />
-
-	</FrameLayout>
-
-	<TableLayout
-		android:id="@+id/tableLayout1"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
-		<TableRow
-			android:id="@+id/tableRow1"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content">
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="LinearLayout Container"
+				android:layout_gravity="center"
+				android:padding="5dp" />
 
 			<ImageView
 				android:layout_width="wrap_content"
 				android:src="@drawable/icon"
 				android:layout_height="wrap_content"
-				android:id="@+id/table_target"
+				android:id="@+id/linear_target"
+				android:layout_gravity="center" />
+
+		</LinearLayout>
+
+		<RelativeLayout
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="5dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:text="RelativeLayout Container"
+				android:layout_gravity="center"
+				android:id="@+id/relative_label"
+				android:padding="5dp" />
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:src="@drawable/icon"
+				android:layout_height="wrap_content"
+				android:layout_toRightOf="@id/relative_label"
+				android:id="@+id/relative_target"
+				android:layout_gravity="center" />
+
+		</RelativeLayout>
+
+		<FrameLayout
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:padding="5dp">
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:src="@drawable/icon"
+				android:layout_height="wrap_content"
+				android:id="@+id/frame_target"
 				android:layout_gravity="center" />
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="TableLayout"
+				android:text="FrameLayout Container"
 				android:layout_gravity="center"
 				android:padding="5dp" />
 
-		</TableRow>
-	</TableLayout>
+		</FrameLayout>
 
-</LinearLayout>
+		<TableLayout
+			android:id="@+id/tableLayout1"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
 
+			<TableRow
+				android:id="@+id/tableRow1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:src="@drawable/icon"
+					android:layout_height="wrap_content"
+					android:id="@+id/table_target"
+					android:layout_gravity="center" />
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="TableLayout Container"
+					android:layout_gravity="center"
+					android:padding="5dp" />
+
+			</TableRow>
+		</TableLayout>
+
+		<!-- ViewGroup target tests -->
+
+		<LinearLayout
+			android:id="@+id/linear_group_target"
+			android:orientation="horizontal"
+			android:layout_width="fill_parent"
+			android:layout_height="100dp"
+			android:padding="5dp"
+			android:background="#3366FF">
+
+			<TextView
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:text="LinearLayout Target"
+				android:layout_gravity="center"
+				android:padding="5dp" />
+
+		</LinearLayout>
+
+		<RelativeLayout
+			android:id="@+id/relative_group_target"
+			android:layout_width="fill_parent"
+			android:layout_height="100dp"
+			android:padding="5dp"
+			android:background="#33CCFF">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				android:text="RelativeLayout Target"
+				android:layout_gravity="center"
+				android:padding="5dp" />
+
+		</RelativeLayout>
+
+		<FrameLayout
+			android:id="@+id/frame_group_target"
+			android:layout_width="fill_parent"
+			android:layout_height="100dp"
+			android:padding="5dp"
+			android:background="#33FFCC">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="FrameLayout Target"
+				android:layout_gravity="center"
+				android:padding="5dp" />
+
+		</FrameLayout>
+
+		<TableLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+
+			<TableRow
+				android:id="@+id/tablerow_group_target"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:background="#33FF66">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="TableRow Target"
+					android:layout_gravity="center"
+					android:padding="5dp" />
+
+			</TableRow>
+		</TableLayout>
+
+	</LinearLayout>
 </ScrollView>

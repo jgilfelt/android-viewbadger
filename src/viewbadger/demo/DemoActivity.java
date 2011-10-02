@@ -164,15 +164,12 @@ public class DemoActivity extends TabActivity {
 		});
     	
     	// *** tab ***
-		// TODO this needs work 
+    	
+    	TabWidget tabs = (TabWidget) findViewById(android.R.id.tabs);
     	
         btnTab = (Button) findViewById(R.id.tab_btn);
-        TabWidget tabs = (TabWidget) findViewById(android.R.id.tabs);
-        ViewGroup tab = (ViewGroup) tabs.getChildTabViewAt(2);
-        View v = tab.getChildAt(0); 
-        badge7 = new BadgeView(this, v);
+        badge7 = new BadgeView(this, tabs, 2);
         badge7.setText("5");
-    	badge7.setBadgeMargin(0);
         btnTab.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -238,6 +235,33 @@ public class DemoActivity extends TabActivity {
 		badge.setText("OK");
 		badge.show();
 		
+		// *** test linear layout ***
+		
+		target = findViewById(R.id.linear_group_target);
+		badge = new BadgeView(this, target);
+		badge.setText("OK");
+		badge.show();
+		
+		// *** test relative layout ***
+		
+		target = findViewById(R.id.relative_group_target);
+		badge = new BadgeView(this, target);
+		badge.setText("OK");
+		badge.show();
+		
+		// *** test frame layout ***
+		
+		target = findViewById(R.id.frame_group_target);
+		badge = new BadgeView(this, target);
+		badge.setText("OK");
+		badge.show();
+		
+		// *** test table layout ***
+		
+		target = findViewById(R.id.tablerow_group_target);
+		badge = new BadgeView(this, target);
+		badge.setText("OK");
+		badge.show();
 		
 	}
     

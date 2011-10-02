@@ -18,6 +18,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.TabWidget;
 import android.widget.TextView;
 
 /**
@@ -54,8 +55,10 @@ public class BadgeView extends TextView {
 	
 	private ShapeDrawable badgeBg;
 	
+	private int targetTabIndex;
+	
 	public BadgeView(Context context) {
-		this(context, null, android.R.attr.textViewStyle);
+		this(context, (AttributeSet) null, android.R.attr.textViewStyle);
 	}
 	
 	public BadgeView(Context context, AttributeSet attrs) {
@@ -71,22 +74,37 @@ public class BadgeView extends TextView {
      * @param target the View to attach the badge to.
      */
 	public BadgeView(Context context, View target) {
-		 this(context, null, android.R.attr.textViewStyle, target);
+		 this(context, null, android.R.attr.textViewStyle, target, 0);
+	}
+	
+	/**
+     * Constructor -
+     * 
+     * create a new BadgeView instance attached to a target {@link android.widget.TabWidget}
+     * tab at a given index.
+     *
+     * @param context context for this view.
+     * @param target the TabWidget to attach the badge to.
+     * @param index the position of the tab within the target.
+     */
+	public BadgeView(Context context, TabWidget target, int index) {
+		this(context, null, android.R.attr.textViewStyle, target, index);
 	}
 	
 	public BadgeView(Context context, AttributeSet attrs, int defStyle) {
-		this(context, attrs, defStyle, null);
+		this(context, attrs, defStyle, null, 0);
 	}
 	
-	public BadgeView(Context context, AttributeSet attrs, int defStyle, View target) {
+	public BadgeView(Context context, AttributeSet attrs, int defStyle, View target, int tabIndex) {
 		super(context, attrs, defStyle);
-		init(context, target);
+		init(context, target, tabIndex);
 	}
 
-	private void init(Context context, View target) {
+	private void init(Context context, View target, int tabIndex) {
 		
 		this.context = context;
 		this.target = target;
+		this.targetTabIndex = tabIndex;
 		
 		// apply defaults
 		badgePosition = DEFAULT_POSITION;
@@ -119,25 +137,38 @@ public class BadgeView extends TextView {
 	private void applyTo(View target) {
 		
 		LayoutParams lp = target.getLayoutParams();
-		
 		ViewParent parent = target.getParent();
-		ViewGroup group = (ViewGroup) parent; // TODO verify!
-		int index = group.indexOfChild(target);
-		
 		FrameLayout container = new FrameLayout(context);
 		
-		group.removeView(target);
-		group.addView(container, index, lp);
-		
-		container.addView(target);
-		//if (getBackground() == null) {
-		//	setBackgroundDrawable(getDefaultBackground());
-		//}
-		this.setVisibility(View.GONE);
-		container.addView(this);
-		//applyLayoutParams();
-		
-		group.invalidate();
+		if (target instanceof TabWidget) {
+			
+			// set target to the relevant tab child container
+			target = ((TabWidget) target).getChildTabViewAt(targetTabIndex);
+			this.target = target;
+			
+			((ViewGroup) target).addView(container, 
+					new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+			
+			this.setVisibility(View.GONE);
+			container.addView(this);
+			
+		} else {
+			
+			// TODO verify that parent is indeed a ViewGroup
+			ViewGroup group = (ViewGroup) parent; 
+			int index = group.indexOfChild(target);
+			
+			group.removeView(target);
+			group.addView(container, index, lp);
+			
+			container.addView(target);
+	
+			this.setVisibility(View.GONE);
+			container.addView(this);
+			
+			group.invalidate();
+			
+		}
 		
 	}
 	

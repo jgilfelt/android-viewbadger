@@ -3,9 +3,9 @@ Android ViewBadger
 
 A simple way to "badge" any given Android view at runtime without having to cater for it in layout.
 
-![Demos](http://jeffgilfelt.com/viewbadger/badge1.png "Demos")&nbsp;
-![ListAdapter](http://jeffgilfelt.com/viewbadger/badge2.png "ListAdapter")&nbsp;
-![Layout Tests](http://jeffgilfelt.com/viewbadger/badge3.png "Layout Tests")
+![Demos](http://www.jeffgilfelt.com/viewbadger/badge1.png "Demos")&nbsp;
+![ListAdapter](http://www.jeffgilfelt.com/viewbadger/badge2.png "ListAdapter")&nbsp;
+![Layout Tests](http://www.jeffgilfelt.com/viewbadger/badge3.png "Layout Tests")
 
 Note: If your aim is to replicate the iOS icon and TabBar badge UI for notifications, consider using Android UI conventions such as the number field of the [Notification](http://developer.android.com/reference/android/app/Notification.html "Notification") class rather than this method.
 

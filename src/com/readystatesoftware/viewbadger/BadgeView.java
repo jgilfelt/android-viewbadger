@@ -33,12 +33,13 @@ public class BadgeView extends TextView {
 	public static final int POSITION_TOP_RIGHT = 2;
 	public static final int POSITION_BOTTOM_LEFT = 3;
 	public static final int POSITION_BOTTOM_RIGHT = 4;
+	public static final int POSITION_CENTER = 5;
 	
 	private static final int DEFAULT_MARGIN_DIP = 5;
 	private static final int DEFAULT_LR_PADDING_DIP = 5;
 	private static final int DEFAULT_CORNER_RADIUS_DIP = 8;
 	private static final int DEFAULT_POSITION = POSITION_TOP_RIGHT;
-	private static final int DEFAULT_BADGE_COLOR = Color.RED;
+	private static final int DEFAULT_BADGE_COLOR = Color.parseColor("#CCFF0000"); //Color.RED;
 	private static final int DEFAULT_TEXT_COLOR = Color.WHITE;
 	
 	private static Animation fadeIn;
@@ -48,7 +49,8 @@ public class BadgeView extends TextView {
 	private View target;
 	
 	private int badgePosition;
-	private int badgeMargin;
+	private int badgeMarginH;
+	private int badgeMarginV;
 	private int badgeColor;
 	
 	private boolean isShown;
@@ -108,7 +110,8 @@ public class BadgeView extends TextView {
 		
 		// apply defaults
 		badgePosition = DEFAULT_POSITION;
-		badgeMargin = dipToPixels(DEFAULT_MARGIN_DIP);
+		badgeMarginH = dipToPixels(DEFAULT_MARGIN_DIP);
+		badgeMarginV = badgeMarginH;
 		badgeColor = DEFAULT_BADGE_COLOR;
 		
 		setTypeface(Typeface.DEFAULT_BOLD);
@@ -336,19 +339,23 @@ public class BadgeView extends TextView {
 		switch (badgePosition) {
 		case POSITION_TOP_LEFT:
 			lp.gravity = Gravity.LEFT | Gravity.TOP;
-			lp.setMargins(badgeMargin, badgeMargin, 0, 0);
+			lp.setMargins(badgeMarginH, badgeMarginV, 0, 0);
 			break;
 		case POSITION_TOP_RIGHT:
 			lp.gravity = Gravity.RIGHT | Gravity.TOP;
-			lp.setMargins(0, badgeMargin, badgeMargin, 0);
+			lp.setMargins(0, badgeMarginV, badgeMarginH, 0);
 			break;
 		case POSITION_BOTTOM_LEFT:
 			lp.gravity = Gravity.LEFT | Gravity.BOTTOM;
-			lp.setMargins(badgeMargin, 0, 0, badgeMargin);
+			lp.setMargins(badgeMarginH, 0, 0, badgeMarginV);
 			break;
 		case POSITION_BOTTOM_RIGHT:
 			lp.gravity = Gravity.RIGHT | Gravity.BOTTOM;
-			lp.setMargins(0, 0, badgeMargin, badgeMargin);
+			lp.setMargins(0, 0, badgeMarginH, badgeMarginV);
+			break;
+		case POSITION_CENTER:
+			lp.gravity = Gravity.CENTER;
+			lp.setMargins(0, 0, 0, 0);
 			break;
 		default:
 			break;
@@ -378,7 +385,7 @@ public class BadgeView extends TextView {
 	/**
      * Returns the positioning of this badge.
      * 
-     * one of POSITION_TOP_LEFT, POSITION_TOP_RIGHT, POSITION_BOTTOM_LEFT, POSITION_BOTTOM_RIGHT.
+     * one of POSITION_TOP_LEFT, POSITION_TOP_RIGHT, POSITION_BOTTOM_LEFT, POSITION_BOTTOM_RIGHT, POSTION_CENTER.
      * 
      */
 	public int getBadgePosition() {
@@ -388,7 +395,7 @@ public class BadgeView extends TextView {
 	/**
      * Set the positioning of this badge.
      * 
-     * @param layoutPosition one of POSITION_TOP_LEFT, POSITION_TOP_RIGHT, POSITION_BOTTOM_LEFT, POSITION_BOTTOM_RIGHT.
+     * @param layoutPosition one of POSITION_TOP_LEFT, POSITION_TOP_RIGHT, POSITION_BOTTOM_LEFT, POSITION_BOTTOM_RIGHT, POSTION_CENTER.
      * 
      */
 	public void setBadgePosition(int layoutPosition) {
@@ -396,11 +403,19 @@ public class BadgeView extends TextView {
 	}
 
 	/**
-     * Returns the horizontal/vertical margin from the target View that is applied to this badge.
+     * Returns the horizontal margin from the target View that is applied to this badge.
      * 
      */
-	public int getBadgeMargin() {
-		return badgeMargin;
+	public int getHorizontalBadgeMargin() {
+		return badgeMarginH;
+	}
+	
+	/**
+     * Returns the vertical margin from the target View that is applied to this badge.
+     * 
+     */
+	public int getVerticalBadgeMargin() {
+		return badgeMarginV;
 	}
 
 	/**
@@ -409,7 +424,19 @@ public class BadgeView extends TextView {
      * @param badgeMargin the margin in pixels.
      */
 	public void setBadgeMargin(int badgeMargin) {
-		this.badgeMargin = badgeMargin;
+		this.badgeMarginH = badgeMargin;
+		this.badgeMarginV = badgeMargin;
+	}
+	
+	/**
+     * Set the horizontal/vertical margin from the target View that is applied to this badge.
+     * 
+     * @param horizontal margin in pixels.
+     * @param vertical margin in pixels.
+     */
+	public void setBadgeMargin(int horizontal, int vertical) {
+		this.badgeMarginH = horizontal;
+		this.badgeMarginV = vertical;
 	}
 	
 	/**

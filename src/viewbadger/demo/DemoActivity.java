@@ -76,7 +76,7 @@ public class DemoActivity extends TabActivity {
         btnPosition = (Button) findViewById(R.id.position_target);
         badge1 = new BadgeView(this, btnPosition);
         badge1.setText("12");
-        badge1.setBadgePosition(BadgeView.POSITION_BOTTOM_LEFT);
+        badge1.setBadgePosition(BadgeView.POSITION_CENTER);
         btnPosition.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -117,7 +117,7 @@ public class DemoActivity extends TabActivity {
         badge4 = new BadgeView(this, btnAnim2);
     	badge4.setText("123");
     	badge4.setBadgePosition(BadgeView.POSITION_TOP_LEFT);
-    	badge4.setBadgeMargin(15);
+    	badge4.setBadgeMargin(15, 10);
     	badge4.setBadgeBackgroundColor(Color.parseColor("#A4C639"));
     	btnAnim2.setOnClickListener(new OnClickListener() {
 			@Override
@@ -168,7 +168,7 @@ public class DemoActivity extends TabActivity {
     	TabWidget tabs = (TabWidget) findViewById(android.R.id.tabs);
     	
         btnTab = (Button) findViewById(R.id.tab_btn);
-        badge7 = new BadgeView(this, tabs, 2);
+        badge7 = new BadgeView(this, tabs, 0);
         badge7.setText("5");
         btnTab.setOnClickListener(new OnClickListener() {
 			@Override

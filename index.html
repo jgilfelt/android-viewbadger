@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Android ViewBadger by jgilfelt</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Android ViewBadger</h1>
+        <h2>A simple way to &quot;badge&quot; any given Android view at runtime without having to cater for it in layout</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/jgilfelt/android-viewbadger/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/jgilfelt/android-viewbadger/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/jgilfelt/android-viewbadger" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p><img src="http://www.jeffgilfelt.com/viewbadger/badge1.png" alt="Demos" title="Demos">
+ 
+<img src="http://www.jeffgilfelt.com/viewbadger/badge2.png" alt="ListAdapter" title="ListAdapter">
+ </p>
+
+<h2>Usage</h2>
+
+<p>Simple example:</p>
+
+<pre><code>View target = findViewById(R.id.target_view);
+BadgeView badge = new BadgeView(this, target);
+badge.setText("1");
+badge.show();
+</code></pre>
+
+<h2>Credits</h2>
+
+<p>Author: <a href="http://jeffgilfelt.com">Jeff Gilfelt</a></p>
+
+<p>The code in this project is licensed under the Apache Software License 2.0.</p>
+
+<p>Copyright (c) 2012 readyState Software Ltd.</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>

@@ -22,6 +22,12 @@ This project contains a fully working example application. Refer to the `DemoAct
 
 To use ViewBadger in your own Android project, simply copy `android-viewbadger.jar` (available from this repository's package downloads) into your project's `/libs` directory and add it to the build path.
 
+Current Limitations
+-------------------
+
+- Badging Action Bar items is currently not supported [#2](https://github.com/jgilfelt/android-viewbadger/issues/2)
+- Badging views inside RelativeLayout with dependencies may break alignment [#1](https://github.com/jgilfelt/android-viewbadger/issues/1)
+
 Credits
 -------
 

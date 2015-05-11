@@ -34,6 +34,7 @@ public class BadgeView extends TextView {
 	public static final int POSITION_BOTTOM_LEFT = 3;
 	public static final int POSITION_BOTTOM_RIGHT = 4;
 	public static final int POSITION_CENTER = 5;
+	public static final int POSITION_CENTER_RIGHT = 6;
 	
 	private static final int DEFAULT_MARGIN_DIP = 5;
 	private static final int DEFAULT_LR_PADDING_DIP = 5;
@@ -138,7 +139,6 @@ public class BadgeView extends TextView {
 	}
 
 	private void applyTo(View target) {
-		
 		LayoutParams lp = target.getLayoutParams();
 		ViewParent parent = target.getParent();
 		FrameLayout container = new FrameLayout(context);
@@ -155,9 +155,7 @@ public class BadgeView extends TextView {
 			this.setVisibility(View.GONE);
 			container.addView(this);
 			
-		} else {
-			
-			// TODO verify that parent is indeed a ViewGroup
+		} else if (parent instanceof ViewGroup) {
 			ViewGroup group = (ViewGroup) parent; 
 			int index = group.indexOfChild(target);
 			
@@ -170,9 +168,9 @@ public class BadgeView extends TextView {
 			container.addView(this);
 			
 			group.invalidate();
-			
+		} else {
+			throw new IllegalArgumentException("Target needs to be a TabWidget or child of a ViewGroup");
 		}
-		
 	}
 	
 	/**
@@ -357,6 +355,9 @@ public class BadgeView extends TextView {
 			lp.gravity = Gravity.CENTER;
 			lp.setMargins(0, 0, 0, 0);
 			break;
+			case POSITION_CENTER_RIGHT:
+				lp.gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
+				lp.setMargins(0, 0, badgeMarginH, 0);
 		default:
 			break;
 		}
